@@ -2,6 +2,7 @@ class Game{
     constructor(){
         this.plr1 = null;
         this.plr2 = null;
+        this.form = null;
     }
     getState() {
         var gameStateRef = database.ref('gameState');
@@ -24,8 +25,8 @@ class Game{
                     playerCount = playerCountRef.val();
                     player.getCount();
                 }
-                form = new Form()
-                form.display();
+                this.form = new Form()
+                this.form.display();
             }
     player1 = createSprite(200,500);
     player1.addImage("player1",player_img);
