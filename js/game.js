@@ -1,6 +1,7 @@
 class Game{
     constructor(){
-
+        this.plr1 = null;
+        this.plr2 = null;
     }
     getState() {
         var gameStateRef = database.ref('gameState');
@@ -63,16 +64,19 @@ class Game{
 
                          
                      }
-                    
-                         textSize(25);
-                         fill("white");
-                         text("Player 1 :" +allPlayers.player1.score,50,50);
-                        text("Player 2 :" + allPlayers.player2.score, 50, 100);
+                    database.ref("players/player1/name").on("value", (data) => {this.plr1 = data.val()})
+                    database.ref("players/player2/name").on("value", (data) => {this.plr2 = data.val()})
+                    console.log(this.plr1);
+                    console.log(this.plr2);
+                    textSize(25);
+                    fill("white");
+                    text(this.plr1 + " : " + allPlayers.player1.score,50,50);
+                    text(this.plr2 + " : " + allPlayers.player2.score, 50, 100);
                  
                  }
                 
                 
-                 
+
 
                 if (keyIsDown(RIGHT_ARROW) && player.index !== null) {
                     player.distance -= 10
